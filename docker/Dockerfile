@@ -15,11 +15,13 @@ RUN apt-get update && apt-get install -y \
     imagemagick \
     && apt-get clean
 
+# 🔧 CREA la directory prima di usarla
+RUN mkdir -p /app
 WORKDIR /app
 
 COPY . .
 
-# Crea un commit fittizio per evitare errori di build
+# ✅ CREA il file evitando l'errore
 RUN echo "render-deploy" > /app/.git_sha
 
 RUN bundle install
